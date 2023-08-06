@@ -1,0 +1,406 @@
+[gd_scene load_steps=40 format=2]
+
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Camera.gd" type="Script" id=2]
+[ext_resource path="res://sprites/background-export.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Enemies/Deer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Enemies/Snake.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sprites/sprites.png" type="Texture" id=6]
+[ext_resource path="res://audio/way_to_home_v1.3.mp3" type="AudioStream" id=7]
+[ext_resource path="res://scenes/SaveZone.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Enemies/Chicken.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Enemies/Wagon.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Enemies/Pig.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Enemies/BlueCar.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Enemies/RedCar.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Enemies/Rider.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Enemies/Dog.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/Enemies/StrayDog.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/Enemies/StrayCat.tscn" type="PackedScene" id=17]
+[ext_resource path="res://audio/Puppy_v1.0.mp3" type="AudioStream" id=18]
+[ext_resource path="res://audio/dog_over_v1.0.mp3" type="AudioStream" id=19]
+[ext_resource path="res://scripts/LivesCounter.gd" type="Script" id=20]
+[ext_resource path="res://scripts/World.gd" type="Script" id=21]
+[ext_resource path="res://ds_pixel_cyr.ttf" type="DynamicFontData" id=22]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 28, 16 )
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 28, 32 )
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -16, -32, 0, 0, 0, 0, 144, -32 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 144, -48, 0, 0, 0, 0, -16, -48 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 144, -152, 0, 0, 0, 0, -16, -152 )
+}
+
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -16, -184, 0, 0, 0, 0, 144, -184 )
+}
+
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 144, -200, 0, 0, 0, 0, -16, -200 )
+}
+
+[sub_resource type="Curve2D" id=7]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 144, -280, 0, 0, 0, 0, -16, -280 )
+}
+
+[sub_resource type="Curve2D" id=8]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -16, -296, 0, 0, 0, 0, 144, -296 )
+}
+
+[sub_resource type="Curve2D" id=9]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 144, -408, 0, 0, 0, 0, -16, -408 )
+}
+
+[sub_resource type="Curve2D" id=10]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -16, -440, 0, 0, 0, 0, 144, -440 )
+}
+
+[sub_resource type="Curve2D" id=11]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 144, -456, 0, 0, 0, 0, -16, -456 )
+}
+
+[sub_resource type="Curve2D" id=12]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 144, -536, 0, 0, 0, 0, -16, -536 )
+}
+
+[sub_resource type="Curve2D" id=13]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -160, -16, 0, 0, 0, 0, 0, -16 )
+}
+
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 64, 8 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 28
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 22 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 14
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 22 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 21 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 64, -320 )
+texture = ExtResource( 3 )
+
+[node name="Collisions" type="Node2D" parent="."]
+
+[node name="Borders" type="StaticBody2D" parent="Collisions"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions/Borders"]
+polygon = PoolVector2Array( 0, -128, 0, 128, 128, 128, 128, -768, 0, -768, 0, -128, -8, -128, -8, -776, 136, -776, 136, 136, -8, 136, -8, -128 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/Borders"]
+position = Vector2( 28, -96 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collisions/Borders"]
+position = Vector2( 100, -96 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Collisions/Borders"]
+position = Vector2( 100, 96 )
+shape = SubResource( 17 )
+
+[node name="Sprite" type="Sprite" parent="Collisions"]
+position = Vector2( 64, -90 )
+texture = ExtResource( 6 )
+hframes = 8
+vframes = 8
+frame = 2
+
+[node name="Sprite2" type="Sprite" parent="Collisions"]
+position = Vector2( 64, -106 )
+texture = ExtResource( 6 )
+hframes = 8
+vframes = 8
+frame = 2
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Paths"]
+position = Vector2( 0, -8 )
+curve = SubResource( 1 )
+
+[node name="Deer" parent="Paths/Path2D" instance=ExtResource( 4 )]
+position = Vector2( -16, -32 )
+speed = 120
+
+[node name="Path2D2" type="Path2D" parent="Paths"]
+position = Vector2( 0, 24 )
+curve = SubResource( 2 )
+
+[node name="Snake" parent="Paths/Path2D2" instance=ExtResource( 5 )]
+position = Vector2( 144, -48 )
+speed = 80
+
+[node name="Path2D3" type="Path2D" parent="Paths"]
+curve = SubResource( 4 )
+
+[node name="Chicken" parent="Paths/Path2D3" instance=ExtResource( 9 )]
+position = Vector2( 144, -152 )
+
+[node name="Path2D4" type="Path2D" parent="Paths"]
+curve = SubResource( 5 )
+
+[node name="Pig" parent="Paths/Path2D4" instance=ExtResource( 11 )]
+position = Vector2( -16, -184 )
+speed = 100
+
+[node name="Path2D5" type="Path2D" parent="Paths"]
+curve = SubResource( 6 )
+
+[node name="Wagon" parent="Paths/Path2D5" instance=ExtResource( 10 )]
+position = Vector2( 144, -200 )
+speed = 80
+
+[node name="Path2D6" type="Path2D" parent="Paths"]
+position = Vector2( 0, -48 )
+curve = SubResource( 5 )
+
+[node name="Pig" parent="Paths/Path2D6" instance=ExtResource( 11 )]
+position = Vector2( -16, -184 )
+speed = 120
+
+[node name="Path2D7" type="Path2D" parent="Paths"]
+curve = SubResource( 7 )
+
+[node name="BlueCar" parent="Paths/Path2D7" instance=ExtResource( 12 )]
+position = Vector2( 144, -280 )
+speed = 140
+
+[node name="Path2D8" type="Path2D" parent="Paths"]
+curve = SubResource( 8 )
+
+[node name="RedCar" parent="Paths/Path2D8" instance=ExtResource( 13 )]
+position = Vector2( -16, -296 )
+speed = 120
+
+[node name="Path2D9" type="Path2D" parent="Paths"]
+position = Vector2( 0, -64 )
+curve = SubResource( 7 )
+
+[node name="BlueCar" parent="Paths/Path2D9" instance=ExtResource( 12 )]
+position = Vector2( 144, -280 )
+speed = 160
+
+[node name="Path2D10" type="Path2D" parent="Paths"]
+position = Vector2( 0, -64 )
+curve = SubResource( 8 )
+
+[node name="RedCar" parent="Paths/Path2D10" instance=ExtResource( 13 )]
+position = Vector2( -16, -296 )
+speed = 140
+
+[node name="Path2D11" type="Path2D" parent="Paths"]
+curve = SubResource( 9 )
+
+[node name="Dog" parent="Paths/Path2D11" instance=ExtResource( 15 )]
+position = Vector2( 144, -408 )
+speed = 80
+
+[node name="Path2D12" type="Path2D" parent="Paths"]
+curve = SubResource( 10 )
+
+[node name="Rider" parent="Paths/Path2D12" instance=ExtResource( 14 )]
+position = Vector2( -16, -440 )
+speed = 160
+
+[node name="Path2D13" type="Path2D" parent="Paths"]
+curve = SubResource( 11 )
+
+[node name="Dog" parent="Paths/Path2D13" instance=ExtResource( 15 )]
+position = Vector2( 144, -456 )
+speed = 100
+
+[node name="Path2D14" type="Path2D" parent="Paths"]
+position = Vector2( 0, -48 )
+curve = SubResource( 10 )
+
+[node name="Rider" parent="Paths/Path2D14" instance=ExtResource( 14 )]
+position = Vector2( -16, -440 )
+speed = 200
+
+[node name="Path2D15" type="Path2D" parent="Paths"]
+curve = SubResource( 12 )
+
+[node name="StrayCat" parent="Paths/Path2D15" instance=ExtResource( 17 )]
+position = Vector2( 144, -536 )
+speed = 200
+
+[node name="Path2D16" type="Path2D" parent="Paths"]
+position = Vector2( 144, -536 )
+curve = SubResource( 13 )
+
+[node name="StrayDog" parent="Paths/Path2D16" instance=ExtResource( 16 )]
+position = Vector2( -160, -16 )
+speed = 150
+
+[node name="Path2D17" type="Path2D" parent="Paths"]
+position = Vector2( 0, -64 )
+curve = SubResource( 12 )
+
+[node name="StrayCat" parent="Paths/Path2D17" instance=ExtResource( 17 )]
+position = Vector2( 144, -536 )
+speed = 180
+
+[node name="Path2D18" type="Path2D" parent="Paths"]
+position = Vector2( 144, -600 )
+curve = SubResource( 13 )
+
+[node name="StrayDog" parent="Paths/Path2D18" instance=ExtResource( 16 )]
+position = Vector2( -160, -16 )
+speed = 170
+
+[node name="Saves" type="Node2D" parent="."]
+
+[node name="SaveZone" parent="Saves" instance=ExtResource( 8 )]
+
+[node name="SaveZone2" parent="Saves" instance=ExtResource( 8 )]
+position = Vector2( 0, -128 )
+
+[node name="SaveZone3" parent="Saves" instance=ExtResource( 8 )]
+position = Vector2( 0, -256 )
+
+[node name="SaveZone4" parent="Saves" instance=ExtResource( 8 )]
+position = Vector2( 0, -384 )
+
+[node name="SaveZone5" parent="Saves" instance=ExtResource( 8 )]
+position = Vector2( 0, -512 )
+
+[node name="SaveZone6" parent="Saves" instance=ExtResource( 8 )]
+position = Vector2( 0, -640 )
+
+[node name="WinZone" type="Area2D" parent="Saves"]
+position = Vector2( 64, -720 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saves/WinZone"]
+shape = SubResource( 16 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 64, 120 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 0, -56 )
+current = true
+smoothing_enabled = true
+script = ExtResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+autoplay = true
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+
+[node name="Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="LivesCounter" type="Label" parent="CanvasLayer/UI"]
+margin_right = 49.0
+margin_bottom = 16.0
+text = "Lives: 5"
+valign = 1
+script = ExtResource( 20 )
+
+[node name="YouLost" type="Popup" parent="CanvasLayer/UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/YouLost"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.0
+margin_top = -32.0
+margin_right = 59.0
+custom_fonts/font = SubResource( 14 )
+text = "You Lost!"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI/YouLost"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -51.0
+margin_right = 53.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 15 )
+text = "Press SPACEBAR
+to retry"
+align = 1
+valign = 1
+
+[node name="YouWin" type="Popup" parent="CanvasLayer/UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/YouWin"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.0
+margin_top = -48.0
+margin_right = 59.0
+margin_bottom = -16.0
+custom_fonts/font = SubResource( 14 )
+text = "You Win!"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI/YouWin"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -51.0
+margin_top = -16.0
+margin_right = 53.0
+margin_bottom = 61.0
+custom_fonts/font = SubResource( 15 )
+text = "You've found
+a new home.
+Press SPACEBAR
+to retry"
+align = 1
+valign = 1
+
+[connection signal="body_entered" from="Saves/WinZone" to="." method="_on_WinZone_body_entered"]

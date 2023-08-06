@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dogwalk.mp3-75b835fc002c411e248ce6657efd34f7.mp3str"
+
+[deps]
+
+source_file="res://audio/dogwalk.mp3"
+dest_files=[ "res://.import/dogwalk.mp3-75b835fc002c411e248ce6657efd34f7.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

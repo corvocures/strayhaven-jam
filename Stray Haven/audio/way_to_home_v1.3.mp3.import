@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/way_to_home_v1.3.mp3-1f650ae76661a3352626594bc3c0fe55.mp3str"
+
+[deps]
+
+source_file="res://audio/way_to_home_v1.3.mp3"
+dest_files=[ "res://.import/way_to_home_v1.3.mp3-1f650ae76661a3352626594bc3c0fe55.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

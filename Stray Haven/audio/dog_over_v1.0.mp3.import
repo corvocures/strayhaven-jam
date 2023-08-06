@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dog_over_v1.0.mp3-ae23ff2123bc28b3ef19758e5fd194dc.mp3str"
+
+[deps]
+
+source_file="res://audio/dog_over_v1.0.mp3"
+dest_files=[ "res://.import/dog_over_v1.0.mp3-ae23ff2123bc28b3ef19758e5fd194dc.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
